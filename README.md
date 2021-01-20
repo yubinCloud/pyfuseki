@@ -13,6 +13,17 @@ By using PyFuseki, you can easily store data from your program into Jena Fuseki,
 **Source Code**: <a href="https://github.com/yubinCloud/pyfuseki" target="_blank">https://github.com/yubinCloud/pyfuseki</a>
 
 ---
+## Requirements
+
+Python 3.6+
+
+PyFuseki stands on the shoulders of giants:
++ [Pydantic](https://pydantic-docs.helpmanual.io/) for the data parts.
++ [httpx](https://www.python-httpx.org/) for the network parts.
++ [rdflib](https://rdflib.readthedocs.io/en/stable/) for the RDF parts.
+
+
+
 
 ## Example
 
@@ -88,8 +99,4 @@ By using PyFuseki, you can easily store data from your program into Jena Fuseki,
        # 将graph插入
        await fuseki.insert_graph(g)
    ```
-
-   
-
-
 
