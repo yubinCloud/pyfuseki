@@ -6,3 +6,4 @@
 """
 from .prefixes import rdf_prefix, show_all_prefixes
 from .BaseRdfPrefixEnum import BaseRdfPrefixEnum
+from .BaseProps import BaseProperty
