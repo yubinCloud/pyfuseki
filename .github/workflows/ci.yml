@@ -2,7 +2,6 @@ name: ci
 on:
   push:
     branches:
-      - master
       - main
 jobs:
   deploy:
@@ -13,5 +12,4 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install mkdocs-material
-      - run: cd docs
       - run: mkdocs gh-deploy --force
