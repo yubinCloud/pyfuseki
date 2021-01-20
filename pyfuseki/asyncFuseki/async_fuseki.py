@@ -9,6 +9,7 @@ from rdflib import Graph
 
 from pyfuseki.asyncFuseki.fuseki_resp import AsyncFusekiResp
 from pyfuseki import exceptions
+from pyfuseki.uitils import RdfUtils
 
 
 class AsyncFuseki:
@@ -65,6 +66,17 @@ class AsyncFuseki:
         """
         data = {'update': sparql}
         return await self._post_data_to_fuseki(data)
+
+    async def insert_graph(self, graph: Graph) -> AsyncFusekiResp:
+        """
+        采用异步的方式向Fuseki插入一个RDF Graph中保存的数据，当插入数据时建议使用这个函数
+        :param graph: 保存有RDF数据的graph
+        :return: Fuseki的响应
+        :raise FusekiConnectError Fuseki连接出错
+        :raise httpx.HTTPStatusError Fuseki响应的非正常状态码引发的异常
+        """
+        insert_sparql_str = RdfUtils.convert_graph_to_insert_sparql(graph)
+        return await self.update_sparql(insert_sparql_str)
 
 
 
