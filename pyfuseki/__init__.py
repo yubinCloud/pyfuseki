@@ -10,4 +10,4 @@ from .syncFuseki.fuseki import FusekiUpdate, FusekiQuery
 
 from .model.BindingItem import BindingItem, SPOBindingItems
 
-from . import ontology_mapper, utils
+from . import ontology_mapper, utils, config, exceptions
