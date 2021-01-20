@@ -2,7 +2,7 @@
 
 @Time: 2021/1/20 16:22
 @Author:
-@File: BaseRdfPrifixEnum.py
+@File: BaseRdfPrefixEnum.py
 """
 from enum import Enum
 import rdflib
