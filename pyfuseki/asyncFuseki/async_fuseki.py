@@ -9,7 +9,7 @@ from rdflib import Graph
 
 from pyfuseki.asyncFuseki.fuseki_resp import AsyncFusekiResp
 from pyfuseki import exceptions
-from pyfuseki.uitils import RdfUtils
+from pyfuseki.utils import RdfUtils
 
 
 class AsyncFuseki:
