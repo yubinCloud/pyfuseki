@@ -9,6 +9,9 @@ import rdflib
 from typing import Union
 
 class BaseRdfPrefixEnum(Enum):
+    """
+    All RDFPrefixEnum class should inherit from it.
+    """
     def val(self, value: str = None) -> Union[rdflib.BNode, rdflib.URIRef]:
         """
         以该namespace和传入的value生成一个URIRef或BNode或Literal

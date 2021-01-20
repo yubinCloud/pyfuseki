@@ -4,10 +4,12 @@
 @Author:
 @File: prefixes.py
 """
+from typing import List
+from enum import EnumMeta
 
-__prefix_cls_list: list = []
+__prefix_cls_list: List[EnumMeta] = []
 
-def rdf_prefix(cls):
+def rdf_prefix(cls: EnumMeta):
     """
     class decorator, used to register RDF prefix classes.
 

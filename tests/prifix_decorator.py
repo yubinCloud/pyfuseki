@@ -1,6 +1,6 @@
 from rdflib import Namespace
 from pyfuseki import config
-from pyfuseki.ontology_mapper import rdf_prefix, BaseRdfPrefixEnum
+from pyfuseki.ontology_mapper import rdf_prefix, BaseRdfPrefixEnum, show_all_prefixes
 
 @rdf_prefix
 class MyPrefix(BaseRdfPrefixEnum):
