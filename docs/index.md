@@ -27,23 +27,24 @@ PyFuseki stands on the shoulders of giants:
 
 + First, we define the classes of the ontology predesigned:
 
-```python
+```Python
 from pyfuseki.ontology_mapper import rdf_prefix, BaseRdfPrefixEnum
 from rdflib import Namespace
 from pyfuseki import config
    
 @rdf_prefix
 class RdfPrefix(BaseRdfPrefixEnum):
-BrandProject = Namespace(config.COMMON_PREFIX + 'BrandProject')
-Firm = Namespace(config.COMMON_PREFIX + 'Firm')
+    BrandProject = Namespace(config.COMMON_PREFIX + 'BrandProject')
+    Firm = Namespace(config.COMMON_PREFIX + 'Firm')
 ```
 
 + Next, we define the data properties and object properties of the ontology predesigned:
 
-```python
+```Python
 from pyfuseki.ontology_mapper import BaseProperty
 from rdflib import Namespace
 from pyfuseki import config
+
 yb = Namespace(config.COMMON_PREFIX)
 
 class ObjectProperty(BaseProperty):
@@ -54,6 +55,7 @@ class ObjectProperty(BaseProperty):
     brandAgencyObjectProperty = yb.brandAgencyObjectProperty
     subordinateTo = yb.subordinateTo   # 从属于
 
+
 class DataProperty(BaseProperty):
     """
     本体中所有Data properties的枚举
@@ -62,11 +64,11 @@ class DataProperty(BaseProperty):
     brandAgencyDataProperty = yb.brandAgencyDataProperty
     createTime = yb.createTime
     enName = yb.enName
- ```
+```
 
 + Finally, we can insert data which we collected into Jena Fuseki:
 
-```python
+```Python
 async def insert_test():
     pyfuseki.register.register_common_prefix("http://www.yubin.com/kg/")
     fuseki = AsyncFuseki('http://localhost:3030', 'pyfuseki_db')
