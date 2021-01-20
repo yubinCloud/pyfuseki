@@ -6,8 +6,9 @@
 """
 from typing import List
 from enum import EnumMeta
+from .BaseRdfPrefixEnum import BaseRdfPrefixEnum
 
-__prefix_cls_list: List[EnumMeta] = []
+__prefix_enum_store: List[EnumMeta] = []
 
 def rdf_prefix(cls: EnumMeta):
     """
@@ -26,10 +27,17 @@ def rdf_prefix(cls: EnumMeta):
     ...
     >>>
     """
-    __prefix_cls_list.append(cls)
+    __prefix_enum_store.append(cls)
     return cls
 
 
 def show_all_prefixes():
-    for prefix_cls in __prefix_cls_list:
+    for prefix_cls in __prefix_enum_store:
         print(prefix_cls)
+
+
+def get_prefix_enum_store() -> List[EnumMeta]:
+    for t in __prefix_enum_store:
+        if BaseRdfPrefixEnum not in t.__bases__:
+            raise ValueError('加入prefix_enum_store中的枚举类型必须为继承自BaseRDFPrefixEnum的类型')
+    return __prefix_enum_store
