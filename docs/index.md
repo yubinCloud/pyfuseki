@@ -6,11 +6,12 @@
 </p>
 A library that uses Python to connect and manipulate Jena Fuseki, which provides sync and async methods.
 
-By using PyFuseki, you can easily store data from your program into Jena Fuseki, following the ontology model, and then query and parse Jena.
+By using pyfuseki, you can easily store data from your program into Jena Fuseki, following the ontology model, and then query and parse Jena.
 
 ---
 
 **Documentation**: <a href="https://yubincloud.github.io/pyfuseki/" target="_blank">https://yubincloud.github.io/pyfuseki/</a>
+
 **Source Code**: <a href="https://github.com/yubinCloud/pyfuseki" target="_blank">https://github.com/yubinCloud/pyfuseki</a>
 
 ---
