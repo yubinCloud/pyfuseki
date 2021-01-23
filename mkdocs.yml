@@ -34,3 +34,4 @@ nav:
   - 'Fuseki Connection':
     - 'first step': 'fuseki_connect/first_step.md'
     - 'sync query': 'fuseki_connect/sync_query.md'
+    - 'async query': 'fuseki_connect/async_fuseki.md'
