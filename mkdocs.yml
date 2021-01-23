@@ -29,3 +29,8 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tasklist
   - pymdownx.tilde
+nav:
+  - Home: 'index.md'
+  - 'Fuseki Connection':
+    - 'first step': 'fuseki_connect/first_step.md'
+    - 'sync query': 'fuseki_connect/sync_query.md'
