@@ -25,6 +25,14 @@ PyFuseki stands on the shoulders of giants:
 + [httpx](https://www.python-httpx.org/) for the network parts.
 + [rdflib](https://rdflib.readthedocs.io/en/stable/) for the RDF parts.
 
+## Installation
+
+```console
+$ pip install pyfuseki
+
+---> 100%
+```
+
 ## Example
 
 + First, we define the classes of the ontology predesigned:
