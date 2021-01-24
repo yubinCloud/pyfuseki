@@ -1,5 +1,5 @@
 # PyFuseki
-<p align="center"><strong>pyfuseki</strong> <em>- A easy way to mix together OWL and Jena Fuseki.</em>   
+<p align="center"><strong>pyfuseki</strong> <em>- An easy way to mix together OWL and Jena Fuseki.</em>   
 </p>
 <p>
 <img src="https://img.shields.io/github/license/yubinCloud/pyfuseki">
