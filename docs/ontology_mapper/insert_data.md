@@ -149,8 +149,8 @@ import pyfuseki
 from pyfuseki.utils import RdfUtils
 from rdflib import Graph, Literal, XSD
 
-from tests.complete.RdfPrefix import RdfPrefix as rp
-from tests.complete.properties import ObjectProperty as op, DataProperty as dp
+from demo.RdfPrefix import RdfPrefix as rp
+from demo.properties import ObjectProperty as op, DataProperty as dp
 
 pyfuseki.register.register_common_prefix("http://www.yubin.com/kg/")
 fuseki = FusekiUpdate('http://localhost:3030', 'pyfuseki_db')
@@ -185,8 +185,8 @@ from pyfuseki import AsyncFuseki
 import pyfuseki
 from pyfuseki.utils import RdfUtils
 from rdflib import Graph, Literal, XSD
-from tests.complete.RdfPrefix import RdfPrefix as rp
-from tests.complete.properties import ObjectProperty as op, DataProperty as dp
+from demo.RdfPrefix import RdfPrefix as rp
+from demo.properties import ObjectProperty as op, DataProperty as dp
 import asyncio
 
 

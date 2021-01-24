@@ -8,8 +8,8 @@ from pyfuseki import AsyncFuseki
 import pyfuseki
 from pyfuseki.utils import RdfUtils
 from rdflib import Graph, Literal, XSD
-from tests.complete.RdfPrefix import RdfPrefix as rp
-from tests.complete.properties import ObjectProperty as op, DataProperty as dp
+from demo.RdfPrefix import RdfPrefix as rp
+from demo.properties import ObjectProperty as op, DataProperty as dp
 import asyncio
 
 
@@ -18,7 +18,6 @@ async def insert_test():
     fuseki = AsyncFuseki('http://localhost:3030', 'pyfuseki_db')
     g = Graph()
 
-    """测试整个过程"""
     # RdfUtils.bind_prefixes_to_graph(self.g, [rp.BrandProject, rp.Firm])  # 绑定前缀
     # 假设获取的数据为rev_data
     rev_data = {
