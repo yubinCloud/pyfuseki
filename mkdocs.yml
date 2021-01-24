@@ -36,4 +36,5 @@ nav:
     - 'sync query': 'fuseki_connect/sync_query.md'
     - 'async query': 'fuseki_connect/async_fuseki.md'
   - 'Ontology Mapper':
-    - 'define entity classes': 'ontology_mapper/entity_classes.md'
+    - 'define your entity': 'ontology_mapper/define_entities.md'
+    - 'insert RDF data into Jena': 'ontology_mapper/insert_data.md'
