@@ -9,6 +9,7 @@ from rdflib import Graph, RDF
 from rdflib.term import URIRef, Literal, BNode, Identifier
 from pyfuseki import config
 
+from pyfuseki.term import RDFList, Subject, Predicate, Object
 from pyfuseki.ontology_mapper import BaseRdfPrefixEnum, GlobalNamespaceManager
 
 
@@ -26,9 +27,7 @@ def bind_prefixes_to_graph(graph: Graph, prefixes: Iterable[BaseRdfPrefixEnum]) 
         graph.namespace_manager.bind(prefix.name, prefix.value)
 
 
-def add_list_to_graph(graph: Graph, spo_list: List[Tuple[Union[URIRef, BNode],
-                                                         URIRef,
-                                                         Union[URIRef, Literal, BNode]]]) -> None:
+def add_list_to_graph(graph: Graph, spo_list: RDFList) -> None:
     """
     将一个SPO三元组的列表一次性地加入 graph 中
     :param graph: 需要加入RDF的graph
@@ -48,8 +47,8 @@ def add_list_to_graph(graph: Graph, spo_list: List[Tuple[Union[URIRef, BNode],
     graph.addN(quads)
 
 
-def add_dict_to_graph(graph: Graph, s: Union[URIRef, BNode],
-                      po_dict: Dict[URIRef, Identifier]) -> None:
+def add_dict_to_graph(graph: Graph, s: Subject,
+                      po_dict: Dict[Predicate, Object]) -> None:
     """
     将一个P-O的字典一次性地加入 graph 中
     :param graph: 需要加入RDF的graph
