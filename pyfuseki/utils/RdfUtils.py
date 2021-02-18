@@ -93,7 +93,7 @@ def make_all_type_rel(rdf_graph: Graph, COMMON_PREFIX: str = None):
         在一个identifier中提取出 rdf:type 的三元组关系，并将其转化成字符串表示
         :return: 转化后的字符串
         """
-        typename =  global_nm.compute_qname_strict(identifier)[0]
+        typename =  global_nm.compute_qname(identifier)[0]
         return f'{identifier.n3()} {rdf_type_rel.n3()} {URIRef(COMMON_PREFIX + typename).n3()} .'
 
     for s, o in rdf_graph.subject_objects():
