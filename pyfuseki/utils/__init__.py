@@ -4,3 +4,4 @@
 @Author:
 @File: __init__.py.py
 """
+from . import FusekiUtils, RdfUtils

@@ -72,7 +72,7 @@ def add_dict_to_graph(graph: Graph, s: Subject,
     graph.addN(quads)
 
 
-def make_all_type_rel(rdf_graph: Graph, COMMON_PREFIX: str = config.COMMON_PREFIX):
+def make_all_type_rel(rdf_graph: Graph, COMMON_PREFIX: str = None):
     """
     生成subject和object的所有类型关系的SPO三元组
     :return: 迭代生成所有三元关系的字符串
@@ -82,6 +82,9 @@ def make_all_type_rel(rdf_graph: Graph, COMMON_PREFIX: str = config.COMMON_PREFI
     >>> for rel in make_all_type_rel(graph)
     >>>     print(rel)
     """
+    if COMMON_PREFIX is None:
+        COMMON_PREFIX = config.COMMON_PREFIX
+
     global_nm = GlobalNamespaceManager.get()
     rdf_type_rel = RDF.term('type')
 

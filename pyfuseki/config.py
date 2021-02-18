@@ -5,6 +5,5 @@
 @File: config.py
 """
 
-
 # the common prefix of OWL
 COMMON_PREFIX: str = ""
