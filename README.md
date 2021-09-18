@@ -85,7 +85,7 @@ async def insert_test():
     g = Graph()
    
     """测试整个过程"""
-    # RdfUtils.bind_prefixes_to_graph(self.g, [rp.BrandProject, rp.Firm])  # 绑定前缀
+    # RdfUtils.bind_prefixes_to_graph(cls.g, [rp.BrandProject, rp.Firm])  # 绑定前缀
     # 假设获取的数据为rev_data
     rev_data = {
         'band_project': '腾讯',

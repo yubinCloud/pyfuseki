@@ -156,7 +156,7 @@ pyfuseki.register.register_common_prefix("http://www.yubin.com/kg/")
 fuseki = FusekiUpdate('http://localhost:3030', 'pyfuseki_db')
 g = Graph()
 
-# RdfUtils.bind_prefixes_to_graph(self.g, [rp.BrandProject, rp.Firm])  # 绑定前缀
+# RdfUtils.bind_prefixes_to_graph(cls.g, [rp.BrandProject, rp.Firm])  # 绑定前缀
 # 假设获取的数据为rev_data
 rev_data = {
     'band_project': '腾讯',
@@ -195,7 +195,7 @@ async def insert_test():
     fuseki = AsyncFuseki('http://localhost:3030', 'pyfuseki_db')
     g = Graph()
 
-    # RdfUtils.bind_prefixes_to_graph(self.g, [rp.BrandProject, rp.Firm])  # 绑定前缀
+    # RdfUtils.bind_prefixes_to_graph(cls.g, [rp.BrandProject, rp.Firm])  # 绑定前缀
     # 假设获取的数据为rev_data
     rev_data = {
         'band_project': '腾讯',

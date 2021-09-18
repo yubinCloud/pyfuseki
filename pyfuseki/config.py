@@ -6,4 +6,4 @@
 """
 
 # the common prefix of OWL
-COMMON_PREFIX: str = ""
+COMMON_PREFIX: str = "http://www.kg.com/"
