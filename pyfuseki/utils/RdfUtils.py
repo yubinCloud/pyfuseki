@@ -93,8 +93,10 @@ def make_all_type_rel(rdf_graph: Graph, COMMON_PREFIX: str = None):
         在一个identifier中提取出 rdf:type 的三元组关系，并将其转化成字符串表示
         :return: 转化后的字符串
         """
-        typename =  global_nm.compute_qname(identifier)[0]
-        return f'{identifier.n3()} {rdf_type_rel.n3()} {URIRef(COMMON_PREFIX + typename).n3()} .'
+        typename = str(global_nm.compute_qname(identifier)[1])
+        if typename[-1] == '/':
+            typename = typename[:-1]
+        return f'{identifier.n3()} {rdf_type_rel.n3()} {URIRef(typename).n3()}.'
 
     for s, o in rdf_graph.subject_objects():
         try:
@@ -120,9 +122,10 @@ def convert_graph_to_insert_sparql(rdf_graph: Graph) -> str:
     if rdf_graph is None:
         raise ValueError
     # 构造 PREFIX 语句
-    prefix_str = '\n'.join(
-        [f'PREFIX {prefix}: <{namespace}>' for (prefix, namespace) in rdf_graph.namespaces()]
-    )
+    # prefix_str = '\n'.join(
+    #     [f'PREFIX {prefix}: <{namespace}>' for (prefix, namespace) in rdf_graph.namespaces()]
+    # )
+
     # 构造graph中已经存在的关系
     entity_rel_spo_str = '\n'.join(
         [f'{s.n3()} {p.n3()} {o.n3()}.' for (s, p, o) in rdf_graph if o != Literal(None)]
@@ -133,7 +136,6 @@ def convert_graph_to_insert_sparql(rdf_graph: Graph) -> str:
     spo_str = ''.join((entity_rel_spo_str, '\n', type_rel_spo_str))
 
     return f"""
-                {prefix_str}
                 INSERT DATA
                 {{
                     {spo_str}
