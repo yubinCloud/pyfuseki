@@ -130,14 +130,10 @@ def convert_graph_to_insert_sparql(rdf_graph: Graph) -> str:
     entity_rel_spo_str = '\n'.join(
         [f'{s.n3()} {p.n3()} {o.n3()}.' for (s, p, o) in rdf_graph if o != Literal(None)]
     )
-    # 构造实体的 rdf:type 关系
-    type_rel_spo_str = '\n'.join(make_all_type_rel(rdf_graph))
-    # 组合出 spo_str 部分
-    spo_str = ''.join((entity_rel_spo_str, '\n', type_rel_spo_str))
 
     return f"""
                 INSERT DATA
                 {{
-                    {spo_str}
+                    {entity_rel_spo_str}
                 }}
             """
