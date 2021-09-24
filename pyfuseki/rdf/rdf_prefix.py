@@ -8,6 +8,9 @@ import rdflib
 from pyfuseki import config
 import uuid
 
+
+name_to_uri = dict()
+
 class NameSpace(rdflib.Namespace):
     """
     继承 rdflib 的 Namespace 并扩充其他相关的功能
@@ -19,12 +22,15 @@ class NameSpace(rdflib.Namespace):
     def __getattr__(self, name) -> rdflib.URIRef:
         return super(NameSpace, self).__getattr__(name)
 
-    def uid(self) -> rdflib.URIRef:
+    def uid(self, name) -> rdflib.URIRef:
         """
         以 uuid 生成一个唯一 id 来作为 value 包装成 URIRef
         :return:
         """
-        return self[str(uuid.uuid1())]
+        if name not in name_to_uri:
+            name_to_uri[name] = str(uuid.uuid1())
+        uri = name_to_uri[name]
+        return rdflib.URIRef(self[uri])
 
     def to_uri(self) -> rdflib.URIRef:
         """
@@ -37,15 +43,22 @@ class NameSpace(rdflib.Namespace):
         return rdflib.URIRef(uri)
 
 
-def rdf_prefix(cls: type, local_prefix: str =None):
+def rdf_prefix(cls: type, local_prefix: str = None):
     if local_prefix is None:
         local_prefix = config.COMMON_PREFIX
     annotations = cls.__annotations__
     for k in annotations:
-        setattr(cls, k, local_prefix + k)
+        setattr(cls, k, NameSpace(local_prefix + k + '/'))
     return cls
 
 if __name__ == '__main__':
     a = NameSpace('http://www.google.com/person/')
     b = a.to_uri()
+
+    @rdf_prefix
+    class Node:
+        name: str
+        email: str
+
+    n = Node()
     print(b)

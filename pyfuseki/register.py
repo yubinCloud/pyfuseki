@@ -6,7 +6,6 @@
 """
 from pyfuseki import config
 
-
 def register_common_prefix(common_prefix: str):
     """
     注册公有的前缀

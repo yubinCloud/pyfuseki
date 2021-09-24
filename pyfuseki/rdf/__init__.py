@@ -4,3 +4,5 @@
 @Author:
 @File: __init__.py.py
 """
+from .rdf_prefix import NameSpace, rdf_prefix
+from .rdf_property import rdf_property
