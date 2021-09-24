@@ -66,15 +66,18 @@ class FusekiUpdate(BaseFuseki):
         self.sparql_conn.setMethod(POST)
         self.sparql_conn.setHTTPAuth(DIGEST)
 
-    def insert_graph(self, rdf_graph: Graph, print_sparql:bool=False) -> sw.Wrapper.QueryResult:
+    def insert_graph(self, rdf_graph: Graph, print_sparql:bool=False, unsafe_auto_gen_type_rel:bool=False) -> sw.Wrapper.QueryResult:
         """
         向Fuseki插入一个RDF Graph中保存的数据
         :param rdf_graph: rdflib.Graph的一个对象，存储了本次insert的所有信息
         :param print_sparql: 是否打印生成的SPARQL语句
+        :param unsafe_auto_gen_type_rel: 不安全地自动生成所有 URIRef 的 rdf:type 关系
+            注意该选项正确运行的前提是假设了每个 URIRef 的类型是它 type URI 后面跟着一个 “/xxx”，xxx标识该 URI
+            如假设了 'http://kg/Person/1110' 的 rdf:type 是 'http://kg/Person'
         :return: Fuseki运行的结果
         :raises: ValueError
         """
-        insert_sparql_str = RdfUtils.convert_graph_to_insert_sparql(rdf_graph)
+        insert_sparql_str = RdfUtils.convert_graph_to_insert_sparql(rdf_graph, unsafe_auto_gen_type_rel)
         if print_sparql:
             print(insert_sparql_str)
         return self.run_sparql(insert_sparql_str)

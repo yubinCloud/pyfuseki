@@ -51,7 +51,7 @@ class ObjectProperty:
 op = ObjectProperty()
 
 if __name__ == '__main__':
-    fuseki = FusekiUpdate('http://localhost:9000', 'test_db')
+    fuseki = FusekiUpdate('http://localhost:8500', 'test_db')
     g = Graph()
     """测试整个过程"""
     # 假设获取的数据为data
@@ -66,8 +66,8 @@ if __name__ == '__main__':
     # 将rev_data转化成RDF三元组并加入graph中
     tencent = rp.BrandProject[data['工商id']]
     tencent_firm = rp.Firm['深圳市腾讯计算机系统有限公司']
-    g.add((tencent, RDF.type, rp.BrandProject.to_uri()))
-    g.add((tencent_firm, RDF.type, rp.Firm.to_uri()))
+    # g.add((tencent, RDF.type, rp.BrandProject.to_uri()))
+    # g.add((tencent_firm, RDF.type, rp.Firm.to_uri()))
     RdfUtils.add_dict_to_graph(g, tencent, {
         op.subordinateTo: tencent_firm,
         dp.createTime: Literal('1998-11-11', datatype=XSD.date),
@@ -75,4 +75,4 @@ if __name__ == '__main__':
     })
     print(g)
     # 将graph插入
-    fuseki.insert_graph(g)
+    fuseki.insert_graph(g, print_sparql=True, unsafe_auto_gen_type_rel=True)

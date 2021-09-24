@@ -112,24 +112,54 @@ def make_all_type_rel(rdf_graph: Graph, COMMON_PREFIX: str = None):
 
 
 
-def convert_graph_to_insert_sparql(rdf_graph: Graph) -> str:
+def convert_graph_to_insert_sparql(rdf_graph: Graph, auto_gen_type_rel: bool=False) -> str:
     """
     将一个graph转化成一个INSERT SPARQL语句
     :param rdf_graph: 待转化的graph
+    :param auto_gen_type_rel：自动产生 rdf:type 关系
     :return: 转化后的SPARQL语句
     """
     # 检查参数是否异常
     if rdf_graph is None:
         raise ValueError
-
+    # 构建 rdf:type 关系
+    if auto_gen_type_rel:
+        type_rel_graph = create_type_rel_graph(rdf_graph)
+        rdf_graph += type_rel_graph
     # 构造graph中已经存在的关系
-    entity_rel_spo_str = '\n'.join(
-        [f'{s.n3()} {p.n3()} {o.n3()}.' for (s, p, o) in rdf_graph if o != Literal(None)]
+    spo_str = '\n'.join(
+        [f'{s.n3()} {p.n3()} {o.n3()}.' for (s, p, o) in rdf_graph]
     )
 
     return f"""
                 INSERT DATA
                 {{
-                    {entity_rel_spo_str}
+                    {spo_str}
                 }}
             """
+
+
+def create_type_rel_graph(g: Graph) -> Graph:
+    type_rel_graph = Graph()
+    entity_set = set()  # 用于防止URI重复
+
+    def add_uri_to_rel_graph(uri: URIRef):
+        """
+        对一个 URIRef 生成 rdf:type 关系并存入 type_rel_graph 中
+        :param uri:
+        :return:
+        """
+        uri_s = str(uri)
+        if uri_s in entity_set:
+            return
+        entity_set.add(uri_s)
+        type_rel_graph.add((uri, RDF.type, URIRef(uri_s[:uri_s.rfind('/')])))
+
+    for s, p, o in g:
+        if o == RDF.type:
+            continue
+        if type(s) is URIRef:
+            add_uri_to_rel_graph(s)
+        if type(o) is URIRef:
+            add_uri_to_rel_graph(o)
+    return type_rel_graph

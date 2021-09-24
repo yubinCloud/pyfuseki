@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="pyfuseki",
-    version="1.0.3",
+    version="1.1.0",
     author="Bin Yu",
     author_email="yubin_SkyWalker@yeah.net",
     description="An easy way to mix together OWL and Jena Fuseki.",
