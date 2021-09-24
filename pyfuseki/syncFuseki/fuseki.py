@@ -66,13 +66,15 @@ class FusekiUpdate(BaseFuseki):
         self.sparql_conn.setMethod(POST)
         self.sparql_conn.setHTTPAuth(DIGEST)
 
-    def insert_graph(self, rdf_graph: Graph) -> sw.Wrapper.QueryResult:
+    def insert_graph(self, rdf_graph: Graph, print_sparql:bool=False) -> sw.Wrapper.QueryResult:
         """
         向Fuseki插入一个RDF Graph中保存的数据
         :param rdf_graph: rdflib.Graph的一个对象，存储了本次insert的所有信息
+        :param print_sparql: 是否打印生成的SPARQL语句
         :return: Fuseki运行的结果
         :raises: ValueError
         """
         insert_sparql_str = RdfUtils.convert_graph_to_insert_sparql(rdf_graph)
-        print(insert_sparql_str)
+        if print_sparql:
+            print(insert_sparql_str)
         return self.run_sparql(insert_sparql_str)

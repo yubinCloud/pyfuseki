@@ -121,10 +121,6 @@ def convert_graph_to_insert_sparql(rdf_graph: Graph) -> str:
     # 检查参数是否异常
     if rdf_graph is None:
         raise ValueError
-    # 构造 PREFIX 语句
-    # prefix_str = '\n'.join(
-    #     [f'PREFIX {prefix}: <{namespace}>' for (prefix, namespace) in rdf_graph.namespaces()]
-    # )
 
     # 构造graph中已经存在的关系
     entity_rel_spo_str = '\n'.join(
