@@ -16,8 +16,8 @@ class NameSpace(rdflib.Namespace):
     继承 rdflib 的 Namespace 并扩充其他相关的功能
     """
 
-    def __getitem__(self, key, default = None) -> rdflib.URIRef:
-        return super(NameSpace, self).__getitem__(key, default)
+    def __getitem__(self, key) -> rdflib.URIRef:
+        return super(NameSpace, self).__getitem__(key)
 
     def __getattr__(self, name) -> rdflib.URIRef:
         return super(NameSpace, self).__getattr__(name)
@@ -46,8 +46,8 @@ class NameSpace(rdflib.Namespace):
 def rdf_prefix(cls: type, local_prefix: str = None):
     if local_prefix is None:
         local_prefix = config.COMMON_PREFIX
-    annotations = cls.__annotations__
-    for k in annotations:
+    attrs = cls.__annotations__.keys()
+    for k in attrs:
         setattr(cls, k, NameSpace(local_prefix + k + '/'))
     return cls
 
@@ -61,4 +61,4 @@ if __name__ == '__main__':
         email: str
 
     n = Node()
-    print(b)
+    print(n.name['yubin'])
