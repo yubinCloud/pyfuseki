@@ -1,0 +1,654 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+    
+    
+      
+        <title>insert data - PyFuseki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bb3983ee.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#00bdd6">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="cyan" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rdf-prefix" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PyFuseki" class="md-header__button md-logo" aria-label="PyFuseki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyFuseki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              insert data
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PyFuseki" class="md-nav__button md-logo" aria-label="PyFuseki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    PyFuseki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Get Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Get Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Get Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-concepts/" class="md-nav__link">
+        basic concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          insert data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        insert data
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rdf-prefix" class="md-nav__link">
+    定义 RDF Prefix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#property" class="md-nav__link">
+    定义 Property
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    实例化个体
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph" class="md-nav__link">
+    向 Graph 中插入数据
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fuseki" class="md-nav__link">
+    向 Fuseki 插入数据
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extension/" class="md-nav__link">
+        extension
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Fuseki Connection
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Fuseki Connection" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Fuseki Connection
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fuseki_connect/first_step/" class="md-nav__link">
+        first step
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fuseki_connect/sync_query/" class="md-nav__link">
+        sync query
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fuseki_connect/async_fuseki/" class="md-nav__link">
+        async query
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rdf-prefix" class="md-nav__link">
+    定义 RDF Prefix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#property" class="md-nav__link">
+    定义 Property
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    实例化个体
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph" class="md-nav__link">
+    向 Graph 中插入数据
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fuseki" class="md-nav__link">
+    向 Fuseki 插入数据
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+  <h1>insert data</h1>
+
+<h2 id="rdf-prefix">定义 RDF Prefix<a class="headerlink" href="#rdf-prefix" title="Permanent link">&para;</a></h2>
+<p>如前所述，我们将一个 URI 视为“前缀 + 后缀”，由于同一个类的实例我们将它们的前缀表达为相同的值，因此我们可以按照本体设计中的各个类，
+在 python 中定义出相应的变量，借助这些变量可以方便地实例化出一个个体（只需要添加上后缀即可）。</p>
+<p>我们来看一下最开始的示例中，我们是怎样定义这些 prefix 的：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyfuseki.rdf</span> <span class="kn">import</span> <span class="n">rdf_prefix</span><span class="p">,</span> <span class="n">NameSpace</span> <span class="k">as</span> <span class="n">ns</span>
+
+<span class="nd">@rdf_prefix</span><span class="p">(</span><span class="s1">&#39;http://expample.com/&#39;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">RdfPrefix</span><span class="p">():</span>
+    <span class="n">Person</span><span class="p">:</span> <span class="n">ns</span>
+    <span class="n">Dog</span><span class="p">:</span> <span class="n">ns</span>
+
+<span class="n">rp</span> <span class="o">=</span> <span class="n">RdfPrefix</span><span class="p">()</span>
+</code></pre></div>
+<p>我们将所有表示前缀的变量都放到了一个类中，这个类的每个字段表示了一个前缀，比如 <code>Person</code> 表示了 <code>http://expample.com/Person/</code> 这样一个前缀。
+为了实例化数据，我们所需要做的只有 <code>rp.Person['Ryan']</code>，这样我们就得到了一个 URI：<code>http://expample.com/Person/Ryan</code>。</p>
+<p>查看这个代码，我们可以看到这些字段的类型都是 <code>ns</code>，它是 <code>NameSpace</code> 的缩写，表示一个命名空间，这是 rdflib 库里的概念，由 NameSpace 便可以生成一个具体的 URI 了。
+可以容易猜到，<code>Person</code> 这个命名空间的值其实是装饰器 <code>rdf_prefix</code> 根据传给他的前缀值 <code>http://expample.com/</code> 加上相应成员字段的变量名而生成的。
+知道了这个原理，我们就很容易知道这段代码为什么要这样写了。</p>
+<p>在一些极少情况下，我们可能需要 <code>http://expample.com/1A/</code> 这样的命名空间，但不幸的是，1A 并不能作为 python 的变量名，这时候我们可以这样做：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyfuseki.rdf</span> <span class="kn">import</span> <span class="n">rdf_prefix</span><span class="p">,</span> <span class="n">NameSpace</span> <span class="k">as</span> <span class="n">ns</span>
+<span class="kn">from</span> <span class="nn">pyfuseki.rdf</span> <span class="kn">import</span> <span class="n">NameSpace</span>
+
+<span class="nd">@rdf_prefix</span><span class="p">(</span><span class="s1">&#39;http://expample.com/&#39;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">RdfPrefix</span><span class="p">():</span>
+    <span class="n">Person</span><span class="p">:</span> <span class="n">ns</span>
+    <span class="n">Dog</span><span class="p">:</span> <span class="n">ns</span>
+<span class="hll">    <span class="n">oneA</span> <span class="o">=</span> <span class="n">NameSpace</span><span class="p">(</span><span class="s1">&#39;http://expample.com/1A/&#39;</span><span class="p">)</span>
+</span>
+<span class="n">rp</span> <span class="o">=</span> <span class="n">RdfPrefix</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="property">定义 Property<a class="headerlink" href="#property" title="Permanent link">&para;</a></h2>
+<p>关系也称为属性，按照 OWL 标准，我们将属性分为数据属性和对象属性。由于属性是唯一的，而且不需要实例化，所以定义方式与上一部分的前缀略有不同：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyfuseki.rdf</span> <span class="kn">import</span> <span class="n">rdf_property</span>
+<span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">URIRef</span> <span class="k">as</span> <span class="n">uri</span>
+
+<span class="nd">@rdf_property</span><span class="p">(</span><span class="s1">&#39;http://example.org/&#39;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ObjectProperty</span><span class="p">:</span>
+    <span class="n">own</span><span class="p">:</span> <span class="n">uri</span> 
+
+<span class="nd">@rdf_property</span><span class="p">(</span><span class="s1">&#39;http://example.org/&#39;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">DataProperty</span><span class="p">:</span>
+    <span class="n">hasName</span><span class="p">:</span> <span class="n">uri</span>
+</code></pre></div>
+<p>按照 RDF 规范，每一个属性都一定是一个 URI，我们使用 python 类 <code>URIRef</code> 来表示 URI，比如前面我们通过实例化前缀得到的就是一个类型为 URIRef 的变量。
+这里，每一个属性的类型也一定是一个 URIRef，为了方便，我们将其简写为 <code>uri</code>。</p>
+<p>在示例中，我们定义了两个属性： own 和 hasName，装饰器 <code>rdf_property</code> 所做的工作与前面的 <code>rdf_prefix</code> 类似，也是将传入的参数和成员字段的变量名进行拼接，将拼接得到的字符串转化成一个 URIRef 的值。
+比如 own 字段的值就是 <code>http://example.org/own</code>。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>注意 RDFPrefix 类中的成员字段的类型不是 URIRef，而是 NameSpace。
+在 ObjectProperty 和 DataProperty 类中的成员字段类型才是 URIRef。</p>
+</div>
+<h2 id="_1">实例化个体<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>有了 RDF Prefix，我们便可以很轻松地实例化出相应的个体。比如我们一个人 Ryan 便可以 <code>rp.Person['Ryan']</code> 这样来得到其 URI（这里的 rp 是 RdfPrefix 的简写）。</p>
+<p>实际上，我们刚刚做的事情有一点不规范，因为 URI 是全球唯一的，但可能有多个人叫做 Ryan，这样便无法区分这些人了，因此往往我们是将能够唯一标识一个人的身份证号来作为后缀来实例化这个 URI。
+人是有唯一的身份证号的，但对于其他事物，比如一个杯子，很难找到一个能够唯一标识它的特征，因此我们可以使用 UUID 来生成一个全球唯一的标识符，这样工作已经被我们封装了起来，
+比如我们想要对 dog 来生成一个全球唯一标识符，只需要 <code>rp.Dog.uid()</code> 就可以，这样便可以得到一个唯一标识这只狗的 URIRef。</p>
+<p>我们来看一下示例中是怎样来实例化数据的：</p>
+<div class="highlight"><pre><span></span><code><span class="n">person</span> <span class="o">=</span> <span class="n">rp</span><span class="o">.</span><span class="n">Person</span><span class="p">[</span><span class="s1">&#39;12345&#39;</span><span class="p">]</span>  <span class="c1"># 假设 &#39;12345&#39; 是这个人的唯一身份证号</span>
+<span class="n">dog</span> <span class="o">=</span> <span class="n">rp</span><span class="o">.</span><span class="n">Dog</span><span class="p">[</span><span class="s1">&#39;56789&#39;</span><span class="p">]</span>  <span class="c1"># 假设这只狗也有唯一的 ID 为 ‘56789’</span>
+</code></pre></div>
+<h2 id="graph">向 Graph 中插入数据<a class="headerlink" href="#graph" title="Permanent link">&para;</a></h2>
+<p>多条陈述（三元组）构成了一张 <strong>RDF 图</strong> ，在 rdflib 库中使用 <code>Graph</code> 这个类来表示，我们也直接使用了这个概念，因此首先需要初始化一张 RDF 图：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">Graph</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
+</code></pre></div>
+<p>现在我们就可以通过 <code>add()</code> 方法向图里面插入 RDF 数据了。但在这之前，还有一些事情要说明。</p>
+<p>之前我们虽然通过前缀实例化出了个体，但这些个体只是一个 URI，并不能指示其类型，不是说我通过 rp.Person 实例化了一个个体就可以说这个个体一定是一个“人”类型。</p>
+<p>因为按照 RDF 标准，一个个体可以属于多个类，甚至可以不属于任何类。由于 OWL 的推理往往需要借助这些个体的类型，因此我们需要为他们声明类型。 
+通过添加一条 <code>&lt;person:Ryan rdf:type :person&gt;</code> 这样的陈述来完成。其中，主语便是我们实例化得到的 <code>person</code> 这个变量，但是怎样表示这个“人”类型呢？
+注意，在 RdfPrefix 中的每个成员字段是一个 NameSpace，但我们需要的是一个 URIRef，因此，这种转换可以通过 <code>rp.Person.to_uri()</code> 来完成，比如刚刚这种转换就得到了 <code>http://example.org/Person</code> 这个 URI。
+<code>rdf:type</code> 这个关系怎样来表达呢？由于这是一个特殊属性，在 rdflib 库中已经有了定义，我们只需要 <code>from rdflib import RDF</code> 后，然后 <code>RDF.type</code> 便表示这样一个关系了。</p>
+<p>所以我们刚刚想要表达的 <code>&lt;person:Ryan rdf:type :person&gt;</code> 这条陈述可以用如下代码来实现：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">RDF</span>
+
+<span class="n">person</span> <span class="o">=</span> <span class="n">rp</span><span class="o">.</span><span class="n">Person</span><span class="p">[</span><span class="s1">&#39;12345&#39;</span><span class="p">]</span>  <span class="c1"># 假设 &#39;12345&#39; 是这个人的唯一身份证号</span>
+
+<span class="hll"><span class="n">stmt</span> <span class="o">=</span> <span class="p">(</span><span class="n">person</span><span class="p">,</span> <span class="n">RDF</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">rp</span><span class="o">.</span><span class="n">Person</span><span class="o">.</span><span class="n">to_uri</span><span class="p">())</span>
+</span></code></pre></div>
+<p>文字型的宾语在 rdflib 中用类型 <code>Liertal</code> 表示，我们也沿用了这一概念，因此想要表达刚刚这个人有一个名字“Ryan”，我们可以用代码这样写：</p>
+<div class="highlight"><pre><span></span><code><span class="n">stmt2</span> <span class="o">=</span> <span class="p">(</span><span class="n">person</span><span class="p">,</span> <span class="n">dp</span><span class="o">.</span><span class="n">hasName</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="s1">&#39;Ryan&#39;</span><span class="p">))</span>
+</code></pre></div>
+<p>有了这些基础，我们就可以看懂最开始的示例中所插入的陈述都是什么意思了：</p>
+<div class="highlight"><pre><span></span><code><span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">person</span><span class="p">,</span> <span class="n">RDF</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">rp</span><span class="o">.</span><span class="n">Person</span><span class="o">.</span><span class="n">to_uri</span><span class="p">()))</span>  <span class="c1"># 声明 person 的类型是 Person</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">dog</span><span class="p">,</span> <span class="n">RDF</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">rp</span><span class="o">.</span><span class="n">Dog</span><span class="o">.</span><span class="n">to_uri</span><span class="p">()))</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">person</span><span class="p">,</span> <span class="n">dp</span><span class="o">.</span><span class="n">hasName</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="s1">&#39;Ryan&#39;</span><span class="p">)))</span>  <span class="c1"># 加入了一条三元组，表示 person1 有名字为 &#39;Ryan&#39;</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">dog</span><span class="p">,</span> <span class="n">dp</span><span class="o">.</span><span class="n">hasName</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="s1">&#39;lucy&#39;</span><span class="p">)))</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">person</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">own</span><span class="p">,</span> <span class="n">dog</span><span class="p">))</span>  <span class="c1"># 声明 Ryan 这个人拥有 lucy 这条狗</span>
+</code></pre></div>
+<h2 id="fuseki">向 Fuseki 插入数据<a class="headerlink" href="#fuseki" title="Permanent link">&para;</a></h2>
+<p>刚刚我们只是把 RDF 数据插入了 Graph 中，这只是在内存里，我们需要的是将其插入 Fuseki 中，这样便可以将这些数据持久化：</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">fuseki</span> <span class="o">=</span> <span class="n">FusekiUpdate</span><span class="p">(</span><span class="s1">&#39;http://localhost:3030&#39;</span><span class="p">,</span> <span class="s1">&#39;test_db&#39;</span><span class="p">)</span>
+<span class="n">fuseki</span><span class="o">.</span><span class="n">insert_graph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+</code></pre></div>
++ <code>FusekiUpdate</code> 的两个参数分别表示 Fuseki 的地址和所要存入的数据库名称。</p>
+<p>完成这些工作后，运行代码我们可以看到成功向 Fuseki 中插入了数据：</p>
+<p><img alt="img.png" src="../../public/img.png" /></p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../basic-concepts/" class="md-footer__link md-footer__link--prev" aria-label="Previous: basic concepts" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              basic concepts
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../extension/" class="md-footer__link md-footer__link--next" aria-label="Next: extension" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              extension
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      
+    
+  </body>
+</html>
