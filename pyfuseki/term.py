@@ -12,4 +12,6 @@ Subject = Union[URIRef, BNode]
 Predicate = URIRef
 Object = Identifier
 
-RDFList = List[Tuple[Subject, Predicate, Object]]
+Statement = Tuple[Subject, Predicate, Object]
+
+RDFList = List[Statement]

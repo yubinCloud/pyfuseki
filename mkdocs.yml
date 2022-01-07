@@ -31,10 +31,11 @@ markdown_extensions:
   - pymdownx.tilde
 nav:
   - Home: 'index.md'
+  - 'Get Started':
+    - 'basic concepts': 'Get-Started/basic-concepts.md'
+    - 'insert data': 'Get-Started/insert-data.md'
+    - 'extension': 'Get-Started/extension.md'
   - 'Fuseki Connection':
     - 'first step': 'fuseki_connect/first_step.md'
     - 'sync query': 'fuseki_connect/sync_query.md'
     - 'async query': 'fuseki_connect/async_fuseki.md'
-  - 'Ontology Mapper':
-    - 'define your entity': 'ontology_mapper/define_entities.md'
-    - 'insert RDF data into Jena': 'ontology_mapper/insert_data.md'

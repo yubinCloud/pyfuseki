@@ -4,9 +4,8 @@
 <p>
 <img src="https://img.shields.io/github/license/yubinCloud/pyfuseki">
 </p>
-A library that uses Python to connect and manipulate Jena Fuseki, which provides sync and async methods.
 
-By using pyfuseki, you can easily store data from your program into Jena Fuseki, following the ontology model, and then query and parse Jena.
+一个用来连接并操作 Apache Jena Fuseki 的 Python 库，同时提供了同步和异步的两种操作方式。通过使用它，你可以很简单地将你的数据插入 Fuseki 中。
 
 ---
 
@@ -19,89 +18,71 @@ By using pyfuseki, you can easily store data from your program into Jena Fuseki,
 
 Python 3.6+
 
-PyFuseki stands on the shoulders of giants:
+PyFuseki 基于以下三个库来实现任务:
 
-+ [Pydantic](https://pydantic-docs.helpmanual.io/) for the data parts.
-+ [httpx](https://www.python-httpx.org/) for the network parts.
-+ [rdflib](https://rdflib.readthedocs.io/en/stable/) for the RDF parts.
++ [Pydantic](https://pydantic-docs.helpmanual.io/) 负责数据部分.
++ [httpx](https://www.python-httpx.org/) 负责网络部分.
++ [rdflib](https://rdflib.readthedocs.io/en/stable/) 负责对 RDF 的操作.
 
 ## Installation
 
 ```console
 $ pip install pyfuseki
-
----> 100%
 ```
 
 ## Example
 
-+ First, we define the classes of the ontology predesigned:
+这里有个简单的例子来演示如何将你的数据插入到 Fuseki 中，先不用究于细节，之后我们会对每一部分进行讲解。
+
++ 首先，我们先按照本体来定义出里面的类，以方便实例化数据：
 
 ```Python
-from pyfuseki.ontology_mapper import rdf_prefix, BaseRdfPrefixEnum
-from rdflib import Namespace
-from pyfuseki import config
-   
-@rdf_prefix
-class RdfPrefix(BaseRdfPrefixEnum):
-    BrandProject = Namespace(config.COMMON_PREFIX + 'BrandProject')
-    Firm = Namespace(config.COMMON_PREFIX + 'Firm')
+from pyfuseki.rdf import rdf_prefix, NameSpace as ns
+
+@rdf_prefix('http://expample.com/')
+class RdfPrefix():
+    Person: ns
+    Dog: ns
+
+rp = RdfPrefix()
 ```
 
-+ Next, we define the data properties and object properties of the ontology predesigned:
++ 接下来，我们按照本体中来定义出里面的关系（属性），以方便表示该关系：
 
 ```Python
-from pyfuseki.ontology_mapper import BaseProperty
-from rdflib import Namespace
-from pyfuseki import config
+from pyfuseki.rdf import rdf_property
+from rdflib import URIRef as uri
 
-yb = Namespace(config.COMMON_PREFIX)
+@rdf_property('http://example.org/')
+class ObjectProperty:
+    own: uri 
 
-class ObjectProperty(BaseProperty):
-    """
-    本体中所有Object properties的枚举
-    name 为该 property 的 display name， value 为包装了该 property IRI 的 URIRef 对象
-    """
-    brandAgencyObjectProperty = yb.brandAgencyObjectProperty
-    subordinateTo = yb.subordinateTo   # 从属于
-
-
-class DataProperty(BaseProperty):
-    """
-    本体中所有Data properties的枚举
-    name 为该 property 的 display name， value 为包装了该 property IRI 的 URIRef 对象
-    """
-    brandAgencyDataProperty = yb.brandAgencyDataProperty
-    createTime = yb.createTime
-    enName = yb.enName
+@rdf_property('http://example.org/')
+class DataProperty:
+    hasName: uri
 ```
 
-+ Finally, we can insert data which we collected into Jena Fuseki:
++ 最后，我们实例化出一些数据，并将其相关陈述（三元组）插入到图中：
 
 ```Python
-async def insert_test():
-    pyfuseki.register.register_common_prefix("http://www.yubin.com/kg/")
-    fuseki = AsyncFuseki('http://localhost:3030', 'pyfuseki_db')
-    g = Graph()
-   
-    """测试整个过程"""
-    # RdfUtils.bind_prefixes_to_graph(cls.g, [rp.BrandProject, rp.Firm])  # 绑定前缀
-    # 假设获取的数据为rev_data
-    rev_data = {
-        'band_project': '腾讯',
-        '所属企业': '深圳市腾讯计算机系统有限公司',
-        '成立日期': '1998-11-11',
-        '英文名称': 'QQ'
-    }
-    # 将rev_data转化成RDF三元组并加入graph中
-    tencent = rp.BrandProject.val('腾讯')
-    RdfUtils.add_dict_to_graph(g, tencent, {
-        op.subordinateTo.value: rp.Firm.val('深圳市腾讯计算机系统有限公司'),
-        dp.createTime.value: Literal(rev_data['成立日期'], datatype=XSD.date),
-        dp.enName.value: Literal(rev_data['英文名称'], datatype=XSD.string)
-    })
-    print(g)
-    # 将graph插入
-    await fuseki.insert_graph(g)
+from pyfuseki import FusekiUpdate
+from rdflib import Graph, Literal, RDF
+
+g = Graph()
+
+# 实例化数据
+person = rp.Person['12345']  # 假设 '12345' 是这个人的唯一身份证号
+dog = rp.Dog['56789']  # 假设这只狗也有唯一的 ID 为 ‘56789’
+
+# 将陈述加入到图中
+g.add((person, RDF.type, rp.Person.to_uri()))  # 声明 person 的类型是 Person
+g.add((dog, RDF.type, rp.Dog.to_uri()))
+g.add((person, dp.hasName, Literal('Ryan')))  # 加入了一条三元组，表示 person1 有名字为 'Ryan'
+g.add((dog, dp.hasName, Literal('lucy')))
+g.add((person, op.own, dog))
+
+# 把图插入到 Fuseki 中
+fuseki = FusekiUpdate('http://localhost:3030', 'test_db')
+fuseki.insert_graph(g)
 ```
 
